@@ -1,0 +1,59 @@
+<body>
+    <h1 class="text-center mt-3">Lista de Alunos</h1>
+    <hr>
+
+    <table class="container table table-striped table-hover">
+
+        <!-- <div class="col float-end">
+            <a href="/"><button type="button" class="btn btn-primary">Inicio</button></a>
+            <a href="./novo"><button type="button" class="btn btn-primary">Cadastre Novos Alunos</button></a>
+        </div> -->
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Contato</th>
+                <th>Endereco</th>
+                <th>Cidade</th>
+                <th>Matricula</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+
+            foreach ($dados as $user_data) {
+                $id = $user_data['id'];
+                echo "<tr>
+                        <td>{$user_data['id']}</td>
+                        <td>{$user_data['nome']}</td>
+                        <td>{$user_data['email']}</td>
+                        <td>{$user_data['contato']}</td>
+                        <td>{$user_data['endereco']}</td>
+                        <td>{$user_data['cidade']}</td>
+                        <td>{$user_data['matricula']}</td>
+                        <td>
+                        <div>
+                            <a href='/editar?id={$id}' class='btn btn-outline-warning'>Editar</a>
+                            <a href='#' onclick='confirmar({$id})' class='btn btn-outline-danger''>Excluir</a> 
+                        </div>
+                        </td>
+                     </tr>";
+            };
+            ?>
+
+        </tbody>
+    </table>
+
+    <script>
+        function confirmar(id) {
+            if (true === confirm('Tem certeza?')) {
+                location.href = '/excluir?id='+id;
+            }
+        }
+    </script>
+</body>
+
+</html>

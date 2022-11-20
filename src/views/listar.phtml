@@ -1,59 +1,85 @@
-<body>
-    <h1 class="text-center mt-3">Lista de Alunos</h1>
-    <hr>
+<h1 class="text-center mt-3">Lista de Alunos</h1>
+<hr>
 
-    <table class="container table table-striped table-hover">
+<table class="container table table-striped table-hover">
 
-        <!-- <div class="col float-end">
+    <!-- <div class="col float-end">
             <a href="/"><button type="button" class="btn btn-primary">Inicio</button></a>
             <a href="./novo"><button type="button" class="btn btn-primary">Cadastre Novos Alunos</button></a>
         </div> -->
 
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Contato</th>
-                <th>Endereco</th>
-                <th>Cidade</th>
-                <th>Matricula</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Contato</th>
+            <th>Endereco</th>
+            <th>Cidade</th>
+            <th>Matricula</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
 
-            foreach ($dados as $user_data) {
-                $id = $user_data['id'];
-                echo "<tr>
-                        <td>{$user_data['id']}</td>
-                        <td>{$user_data['nome']}</td>
-                        <td>{$user_data['email']}</td>
-                        <td>{$user_data['contato']}</td>
-                        <td>{$user_data['endereco']}</td>
-                        <td>{$user_data['cidade']}</td>
-                        <td>{$user_data['matricula']}</td>
+        foreach ($dados as $linha) {
+            $id = $linha['id'];
+            echo "<tr>
+                        <td>{$linha['id']}</td>
+                        <td>{$linha['nome']}</td>
+                        <td>{$linha['email']}</td>
+                        <td>{$linha['contato']}</td>
+                        <td>{$linha['endereco']}</td>
+                        <td>{$linha['cidade']}</td>
+                        <td>{$linha['matricula']}</td>
                         <td>
                         <div>
-                            <a href='/editar?id={$id}' class='btn btn-outline-warning'>Editar</a>
-                            <a href='#' onclick='confirmar({$id})' class='btn btn-outline-danger''>Excluir</a> 
+                        <a href='/editar?id={$id}' class='btn btn-warning'>Editar</a>
+                            <a  onclick='deletarId({$id})' data-bs-toggle='modal' data-bs-target='#exampleModal' class='btn btn-danger'>Excluir</a> 
                         </div>
                         </td>
                      </tr>";
-            };
-            ?>
+        };
+        ?>
 
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
-    <script>
-        function confirmar(id) {
-            if (true === confirm('Tem certeza?')) {
-                location.href = '/excluir?id='+id;
-            }
+<div class='modal' tabindex='-1'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title'>Excluir aluno?</h5>
+                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+            </div>
+            <div class='modal-body'>
+                <p>Deseja excluir aluno?</p>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
+                <button type='button' onclick='confirmar()' class='btn btn-primary'>Excluir</button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<script>
+    function deletarId(id) {
+        document.getElementById("id").value = id;
+        location.href = '/excluir?id=' + id;
+    
+    }
+
+    function confirmar() {
+        let idAlunos = document.getElementById("id").value;
+        location.href = '/excluir?id=' + id;
+    };
+</script>
+<!-- <script>
+    function confirmar(id) {
+        if (true === confirm('Tem certeza?')) {
+            location.href = '/excluir?id=' + id;
         }
-    </script>
-</body>
-
-</html>
+    }
+</script> -->

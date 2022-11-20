@@ -1,10 +1,11 @@
 <h1 class="text-center mt-3">Lista de Alunos</h1>
 <hr>
 
-<table class="container table table-striped table-hover">
 
+<table class="container table table-striped table-hover">
+    
     <!-- <div class="col float-end">
-            <a href="/"><button type="button" class="btn btn-primary">Inicio</button></a>
+        <a href="/"><button type="button" class="btn btn-primary">Inicio</button></a>
             <a href="./novo"><button type="button" class="btn btn-primary">Cadastre Novos Alunos</button></a>
         </div> -->
 
@@ -26,7 +27,7 @@
         foreach ($dados as $linha) {
             $id = $linha['id'];
             echo "<tr>
-                        <td>{$linha['id']}</td>
+            <td>{$linha['id']}</td>
                         <td>{$linha['nome']}</td>
                         <td>{$linha['email']}</td>
                         <td>{$linha['contato']}</td>
@@ -36,46 +37,48 @@
                         <td>
                         <div>
                         <a href='/editar?id={$id}' class='btn btn-warning'>Editar</a>
-                            <a  onclick='deletarId({$id})' data-bs-toggle='modal' data-bs-target='#exampleModal' class='btn btn-danger'>Excluir</a> 
+                        <button  onclick='deletarId({$id})' data-bs-toggle='modal' data-bs-target='#exampleModal' class='btn btn-danger'>Excluir</button> 
                         </div>
                         </td>
-                     </tr>";
-        };
-        ?>
+                        </tr>";
+                    };
+                    ?>
 
     </tbody>
 </table>
 
-<div class='modal' tabindex='-1'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <h5 class='modal-title'>Excluir aluno?</h5>
-                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-            </div>
-            <div class='modal-body'>
-                <p>Deseja excluir aluno?</p>
-            </div>
-            <div class='modal-footer'>
-                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                <button type='button' onclick='confirmar()' class='btn btn-primary'>Excluir</button>
-            </div>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Excluir aluno!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <p>Deseja realmente excluir aluno?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" onclick='confirmar(id)' class="btn btn-primary">Excluir</button>
+      </div>
     </div>
-</div> 
+  </div>
+</div>
 
 <script>
     function deletarId(id) {
-        document.getElementById("id").value = id;
-        location.href = '/excluir?id=' + id;
-    
-    }
+        document.getElementById("atualizarId").value = id;
+    };
 
     function confirmar() {
-        let idAlunos = document.getElementById("id").value;
+        document.getElementById("atualizarId").value;
         location.href = '/excluir?id=' + id;
     };
 </script>
+
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3' crossorigin='anonymous'></script>
+
 <!-- <script>
     function confirmar(id) {
         if (true === confirm('Tem certeza?')) {

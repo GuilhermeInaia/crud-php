@@ -37,7 +37,7 @@
                         <td>
                         <div>
                         <a href='/editar?id={$id}' class='btn btn-warning'>Editar</a>
-                        <button  onclick='deletarId({$id})' data-bs-toggle='modal' data-bs-target='#exampleModal' class='btn btn-danger'>Excluir</button> 
+                        <a href='#' onclick='deletarId({$id})' data-bs-toggle='modal' data-bs-target='#exampleModal' class='btn btn-danger'>Excluir</a> 
                         </div>
                         </td>
                         </tr>";
@@ -56,11 +56,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <p>Deseja realmente excluir aluno?</p>
+      <p>Deseja realmente excluir aluno(a)?</p>
+      <input type="hidden" id="atualizarId">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" onclick='confirmar(id)' class="btn btn-primary">Excluir</button>
+        <button type="button" onclick="confirmar()" class="btn btn-primary">Excluir</button>
       </div>
     </div>
   </div>
@@ -72,7 +73,7 @@
     };
 
     function confirmar() {
-        document.getElementById("atualizarId").value;
+        let id = document.getElementById("atualizarId").value;
         location.href = '/excluir?id=' + id;
     };
 </script>
